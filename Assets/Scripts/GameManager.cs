@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourPun
 {
-    public GameObject tankPrefab;
+    [SerializeField] public string tankPrefab;
     private List<GameObject> players = new List<GameObject>();
+
 
     void Start()
     {
         // Instancia o tanque quando o jogador se conecta
-        PhotonNetwork.Instantiate(tankPrefab.name, Vector3.zero, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(tankPrefab, Vector3.zero, Quaternion.identity, 0);
     }
 
     [PunRPC]
