@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8646960609183302165}
+  - component: {fileID: 8819023608108343501}
   m_Layer: 0
   m_Name: TankTurretParent
   m_TagString: Untagged
@@ -108,14 +109,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038875680335857018}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.19055195, w: 0.9816772}
-  m_LocalPosition: {x: 0, y: 0.058, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.003, y: 0.04192801, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6625310543615283095}
   m_Father: {fileID: 1588919995668516905}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 21.97}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8819023608108343501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038875680335857018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae17ebf4b03d79a43a19a77989947b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turret: {fileID: 8646960609183302165}
+  speed: 15
 --- !u!1 &7478204215700308340
 GameObject:
   m_ObjectHideFlags: 0
