@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tanque : MonoBehaviour
+public class Tanque : MonoBehaviourPun
 {
     public int health = 100;
     public float moveSpeed = 5;
