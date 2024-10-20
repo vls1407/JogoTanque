@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiraTorreta : MonoBehaviour
+public class MiraTorreta : MonoBehaviourPun
 {
     [SerializeField] private Transform turret; // A referência à torreta do tanque
     [SerializeField] private Camera mainCamera; // Referência à câmera principal do jogo
@@ -17,7 +18,10 @@ public class MiraTorreta : MonoBehaviour
 
     void Update()
     {
-        RotateTurret();
+        if (photonView.IsMine)
+        {
+            RotateTurret();
+        }
     }
 
     void RotateTurret()
