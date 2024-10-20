@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bala : MonoBehaviour
+public class Bala : MonoBehaviourPun
 {
     [SerializeField] float speed = 10f; // Defina a velocidade para um valor positivo
     [SerializeField] float damage = 10f;
@@ -18,7 +19,10 @@ public class Bala : MonoBehaviour
 
     void Update()
     {
-        Movement();
+        if (photonView.IsMine)
+        {
+            Movement();
+        }
     }
 
     void Movement()
