@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviourPun
 {
     [SerializeField] public GameObject projectilePrefab; // Prefab do projétil
     [SerializeField] public Transform firePoint; // Ponto onde o projétil será instanciado
@@ -12,7 +12,10 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        Shoot();
+        if (photonView.IsMine)
+        {
+            Shoot();
+        }
     }
 
     void Shoot()
