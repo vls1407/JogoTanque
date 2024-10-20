@@ -18,7 +18,7 @@ public class MiraTorreta : MonoBehaviourPun
 
     void Update()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine) //Verifica se a torreta que o jogador está movimentando é o dele
         {
             RotateTurret();
         }

@@ -12,23 +12,25 @@ public class Projectile : MonoBehaviourPun
 
     void Update()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
-            Shoot();
+            nextFireTime = Time.time + 1f / fireRate;
+            photonView.RPC("ShootProjectile", RpcTarget.All, firePoint.position, firePoint.rotation);
         }
     }
 
-    void Shoot()
+    [PunRPC]
+    void ShootProjectile(Vector3 position, Quaternion rotation)
     {
-        // Verifica se o botão de disparo (botão esquerdo do mouse) foi pressionado e se o tanque pode disparar
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
-        {
-            Debug.Log("Disparando projétil!"); // Verifica se o disparo está sendo registrado
-            // Instancia o projétil na posição do firePoint com a rotação da torreta
-            PhotonView.Instantiate(projectilePrefab, firePoint.position, firePoint.rotation).GetComponent<Bala>();
+        // Instancia o projétil localmente para todos os jogadores
+        GameObject projectile = Instantiate(projectilePrefab, position, rotation);
 
-            // Define o próximo momento em que o tanque poderá disparar, baseado na fireRate
-            nextFireTime = Time.time + 1f / fireRate;
+        // Se o projétil precisar ser sincronizado (com movimento e colisão), adicione o PhotonView
+        PhotonView pv = projectile.GetComponent<PhotonView>();
+        if (pv == null)
+        {
+            pv = projectile.AddComponent<PhotonView>();
+            pv.ViewID = PhotonNetwork.AllocateViewID(true); // Garante que o projétil tenha um ID de rede único
         }
     }
 }
