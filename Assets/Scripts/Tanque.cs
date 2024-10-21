@@ -25,7 +25,7 @@ public class Tanque : MonoBehaviourPun
             // Notifica o GameManager que o jogador morreu
             PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("PlayerDied", RpcTarget.All, photonView.ViewID);
-            Destroy(gameObject); // Destrói o tanque
+            PhotonView.Destroy(gameObject); // Destrói o tanque
         }
     }
 
