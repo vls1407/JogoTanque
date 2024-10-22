@@ -15,11 +15,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Instantiate(tankPrefab, Vector3.zero, Quaternion.identity, 0);
     }
 
-    [PunRPC]
-    public void PlayerDied(int playerId)
-    {
-        // Lógica para quando um jogador morre
-    }
 
     public void RegisterPlayer(GameObject player)
     {

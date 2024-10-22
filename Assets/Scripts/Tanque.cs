@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tanque : MonoBehaviourPun
 {
-    public int health = 20;
+    public int health = 60;
     public float moveSpeed = 5;
     public float rotateSpeed = 200;
 
@@ -32,7 +32,6 @@ public class Tanque : MonoBehaviourPun
         if (health <= 0)
         {
             // Notifica o GameManager que o jogador morreu
-            //PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("PlayerDied", RpcTarget.All);
            
         }
@@ -43,6 +42,8 @@ public class Tanque : MonoBehaviourPun
     {
         Destroy(gameObject); // Destrói o tanque
     }
+
+
 
 
     private void MoveTank()
