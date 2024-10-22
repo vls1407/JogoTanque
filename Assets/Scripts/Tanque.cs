@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tanque : MonoBehaviourPun
 {
-    public int health = 100;
+    public int health = 20;
     public float moveSpeed = 5;
     public float rotateSpeed = 200;
 
@@ -15,6 +15,15 @@ public class Tanque : MonoBehaviourPun
         {
             MoveTank();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+     if (collision.transform || collision.gameObject.tag == "Bala") 
+     {
+            Debug.Log("colisão entrou");
+            TakeDamage(10); 
+     }
     }
 
     public void TakeDamage(int damage)
