@@ -39,7 +39,7 @@ public class Tanque : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void PlayerDied(int playerId)
+    public void PlayerDied()
     {
         Destroy(gameObject); // Destrói o tanque
     }
