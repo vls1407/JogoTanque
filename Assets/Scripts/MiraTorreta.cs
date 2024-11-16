@@ -34,7 +34,7 @@ public class MiraTorreta : MonoBehaviourPun
         Vector3 direction = worldPosition - turret.position;
         direction.z = 0; // Como é um jogo 2D, garantimos que o eixo Z permaneça inalterado
 
-        // Calcula o ângulo de rotação com base na direção e aplica na rotação da torreta
+        // Calcula o angulo de rotação com base na direção e aplica na rotação da torreta
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         turret.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); // Ajusta para a rotação correta
     }

@@ -11,9 +11,9 @@ public class Bala : MonoBehaviour
 
     void Start() //Metodo que é chamado quando dispará a bala
     {
-        rigidbody2D = GetComponent<Rigidbody2D>(); // Obtém o componente Rigidbody2D anexado ao objeto
-        rigidbody2D.bodyType = RigidbodyType2D.Kinematic; // Define o tipo de corpo do Rigidbody2D como cinemático
-        Destroy(gameObject, 10);  // Destrói a bala após 10 segundos para não ficar na cena indefinidamente
+        rigidbody2D = GetComponent<Rigidbody2D>(); // Obtem o componente Rigidbody2D anexado ao objeto
+        rigidbody2D.bodyType = RigidbodyType2D.Kinematic; // Define o tipo de corpo do Rigidbody2D como cinematico
+        Destroy(gameObject, 10);  // Destroi a bala após 10 segundos para não ficar na cena
     }
 
     void Update()
