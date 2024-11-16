@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class Tanque : MonoBehaviourPun
 {
-    public int health = 60;
-    public float moveSpeed = 5;
-    public float rotateSpeed = 200;
+    public int health = 60; // Quantidade de vida do tanque
+    public float moveSpeed = 5; // Velocidade de movimento do tanque.
+    public float rotateSpeed = 200; // Velocidade de rotação do tanque.
 
     void Update()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine) // // Verifica se o tanque pertence ao jogador local antes de permitir o controle
         {
             Move(); // Utiliza o método da interface
         }
@@ -21,86 +21,19 @@ public class Tanque : MonoBehaviourPun
     public void Move()
     {
         // Lógica original da movimentação do tanque
-        float move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        float rotate = Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime;
+        float move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;  //Calcula a movimentação para frente ou para trás.
+        float rotate = Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime; //Calcula a rotação
 
-        transform.Translate(0, move, 0);
-        transform.Rotate(0, 0, -rotate);
+        transform.Translate(0, move, 0);  //Move o tanque para frente ou para trás com base na entrada do jogador
+        transform.Rotate(0, 0, -rotate); //Rotaciona o tanque com base na entrada do jogador
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //Método chamado ao detectar uma colisão com outro objeto.
     {
-        if (collision.transform || collision.gameObject.tag == "Bala")
+        if (collision.transform || collision.gameObject.tag == "Bala") //Verifica se o objeto colidido é válido ou se a tag corresponde a "Bala".
         {
-            Debug.Log("Tanque atingido!");
-            // Lógica de dano (placeholder)
+            Debug.Log("Tanque atingido!"); //Mostra uma mensagem no console indicando que o tanque foi atingido
+          
         }
     }
 }
-
-
-
-
-
-
-/*public class Tanque : MonoBehaviourPun
-{
-    public int health = 60;
-    public float moveSpeed = 5;
-    public float rotateSpeed = 200;
-
-    void Update()
-    {
-        if (photonView.IsMine)
-        {
-            MoveTank();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-     if (collision.transform || collision.gameObject.tag == "Bala") 
-     {
-            Debug.Log("colisão entrou");
-            TakeDamage(10); 
-     }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            // Notifica o GameManager que o jogador morreu
-            photonView.RPC("PlayerDied", RpcTarget.All);
-           
-        }
-    }
-
-    [PunRPC]
-    public void PlayerDied()
-    {
-        Destroy(gameObject); // Destrói o tanque
-    }
-
-
-
-
-    private void MoveTank()
-    {
-        // Captura entrada do jogador
-        float moveInput = Input.GetAxis("Vertical"); // W/S ou setas para cima/baixo
-        float rotateInput = Input.GetAxis("Horizontal"); // A/D ou setas esquerda/direita
-
-        // Movimentação
-        Vector3 moveDirection = transform.up * moveInput * moveSpeed * Time.deltaTime;
-        transform.position += moveDirection;
-
-        // Rotação
-        float rotationAmount = rotateInput * rotateSpeed * Time.deltaTime;
-        transform.Rotate(0, 0, -rotationAmount);
-    }
-
-
-
-}*/

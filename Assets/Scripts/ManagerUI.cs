@@ -7,35 +7,29 @@ public class ManagerUI : MonoBehaviour
 {
     #region Singleton
 
-    public static ManagerUI instance;
+    public static ManagerUI instance; //Instância a classe para acesso global
 
-    private void Awake()
+    private void Awake() //Método chamado ao inicializar o objeto
     {
-        if (instance == null)
+        if (instance == null) //Verifica se já existe uma instância
         {
             instance = this;
         }
-        else if (instance != this)
+        else if (instance != this) //Define esta como a instância ativa
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //Destroi objetos duplicados para manter apenas um ManagerUI ativo
         }
 
         timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
-        gameOverWindow = GameObject.Find("GameOverWindow");
     }
 
     #endregion
 
-    TextMeshProUGUI timerText;
-    GameObject gameOverWindow;
-
+    TextMeshProUGUI timerText; //Referência o texto que exibe o temporizador
+    // Atualiza o texto do temporizador na UI com o valor fornecido
     public void UpdateTimerText(float value)
     {
-        timerText.text = value.ToString("0.0");
+        timerText.text = value.ToString("0.0"); 
     }
 
-    public void SetGameOver(bool active)
-    {
-        gameOverWindow.SetActive(active);
-    }
 }

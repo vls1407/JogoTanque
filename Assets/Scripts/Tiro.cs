@@ -12,15 +12,15 @@ public class Projectile : MonoBehaviourPun
 
     void Update()
     {
-        if (photonView.IsMine && Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (photonView.IsMine && Input.GetMouseButton(0) && Time.time >= nextFireTime) //Verifica se este objeto pertence ao jogador local no multiplayer 
         {
-            nextFireTime = Time.time + 1f / fireRate;
-            photonView.RPC("ShootProjectile", RpcTarget.All, firePoint.position, firePoint.rotation);
+            nextFireTime = Time.time + 1f / fireRate; //Atualiza o tempo para o próximo disparo com base no fireRate
+            photonView.RPC("ShootProjectile", RpcTarget.All, firePoint.position, firePoint.rotation); //Chama o método ShootProjectile para sincronizar o disparo em todos os jogadores
         }
     }
 
     [PunRPC]
-    void ShootProjectile(Vector3 position, Quaternion rotation)
+    void ShootProjectile(Vector3 position, Quaternion rotation) //Método RPC responsável por criar e disparar o projétil.
     {
         // Instancia o projétil localmente para todos os jogadores
         GameObject projectile = Instantiate(projectilePrefab, position, rotation);
