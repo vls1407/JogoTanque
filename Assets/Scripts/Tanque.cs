@@ -3,7 +3,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Tanque : MonoBehaviourPun
+{
+    public int health = 60;
+    public float moveSpeed = 5;
+    public float rotateSpeed = 200;
+
+    void Update()
+    {
+        if (photonView.IsMine)
+        {
+            Move(); // Utiliza o método da interface
+        }
+    }
+
+    public void Move()
+    {
+        // Lógica original da movimentação do tanque
+        float move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float rotate = Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime;
+
+        transform.Translate(0, move, 0);
+        transform.Rotate(0, 0, -rotate);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform || collision.gameObject.tag == "Bala")
+        {
+            Debug.Log("Tanque atingido!");
+            // Lógica de dano (placeholder)
+        }
+    }
+}
+
+
+
+
+
+
+/*public class Tanque : MonoBehaviourPun
 {
     public int health = 60;
     public float moveSpeed = 5;
@@ -63,4 +103,4 @@ public class Tanque : MonoBehaviourPun
 
 
 
-}
+}*/
